@@ -155,12 +155,12 @@ func (ak AccountKeeper) ModuleAccountByName(c context.Context, req *types.QueryM
 	if account == nil {
 		return nil, status.Errorf(codes.NotFound, "account %s not found", moduleName)
 	}
-	any, err := codectypes.NewAnyWithValue(account)
+	anyModuleAccount, err := codectypes.NewAnyWithValue(account)
 	if err != nil {
 		return nil, status.Errorf(codes.Internal, err.Error())
 	}
 
-	return &types.QueryModuleAccountByNameResponse{Account: any}, nil
+	return &types.QueryModuleAccountByNameResponse{Account: anyModuleAccount}, nil
 }
 
 // Bech32Prefix returns the keeper internally stored bech32 prefix.
